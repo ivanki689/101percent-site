@@ -6,10 +6,9 @@ const YANDEX_MAP_EMBED =
   'https://yandex.com/map-widget/v1/?ll=69.221%2C41.331&z=16&pt=69.221%2C41.331%2Cpm2rdm&mode=search&oid=21434464753';
 
 const INTEREST_LABELS = {
-  math: 'Математика для абитуриентов',
-  ielts: 'IELTS TURBO',
-  english_teen: 'Английский General (13–18)',
-  english_kids: 'Английский для детей (9–13)',
+  math: 'Математика для абитуриентов (8–11 кл)',
+  math_5_8: 'Математика 5–8 классы',
+  westminster: 'Подготовка к Westminster',
   premium: 'Индивидуально с Нодиром',
 };
 

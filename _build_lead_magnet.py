@@ -12,8 +12,8 @@ OUT  = HERE / "assets" / "lead-magnet.pdf"
 BASIC_FORMULAS = [
     {
         "n": "01", "title": "Квадратное уравнение",
-        "expr": "x = (−b ± √(b² − 4ac)) / 2a",
-        "body": "Для уравнения <em>ax² + bx + c = 0</em> корни находятся через дискриминант.",
+        "expr": "x = (−b ± √(b² − 4ac)) / (2a)",
+        "body": "Для уравнения <em>ax² + bx + c = 0</em> корни находятся через дискриминант <em>D = b² − 4ac</em>. Скобки в знаменателе — обязательны.",
         "example": "<strong>Пример.</strong> 2x² − 5x + 2 = 0 → D = 25 − 16 = 9 → √D = 3 → x₁ = 2, x₂ = 0.5",
     },
     {
@@ -30,14 +30,14 @@ BASIC_FORMULAS = [
     },
     {
         "n": "04", "title": "Геометрическая прогрессия",
-        "expr": "bₙ = b₁ · q^(n−1) · · · Sₙ = b₁(qⁿ − 1) / (q − 1)",
-        "body": "Каждый член — предыдущий умноженный на знаменатель <em>q</em>.",
+        "expr": "bₙ = b₁ · q^(n−1) · · · Sₙ = b₁(qⁿ − 1) / (q − 1), q ≠ 1",
+        "body": "Каждый член — предыдущий умноженный на знаменатель <em>q</em>. При q = 1 все члены равны b₁, и сумма Sₙ = n·b₁.",
         "example": "<strong>Пример.</strong> b₁ = 2, q = 3 → b₅ = 162 → S₅ = 242",
     },
     {
         "n": "05", "title": "Свойства логарифмов",
         "expr": "log(ab) = log a + log b · · · log(a/b) = log a − log b · · · log(aⁿ) = n · log a",
-        "body": "Три ключевых тождества. Из них выводится почти всё в задачах на логарифмы.",
+        "body": "Три ключевых тождества. Условия: <em>a > 0, b > 0</em>, основание > 0 и ≠ 1.",
         "example": "<strong>Пример.</strong> log₂ 32 = log₂(2⁵) = 5 · log₂ 2 = 5",
     },
     {
@@ -83,7 +83,7 @@ ALGEBRA_FORMULAS = [
     {
         "n": "12", "title": "Свойства корней",
         "expr": "ⁿ√(ab) = ⁿ√a · ⁿ√b · · · ⁿ√(a/b) = ⁿ√a / ⁿ√b · · · ⁿ√(aᵐ) = aᵐ⁄ⁿ",
-        "body": "Корень n-й степени можно представить как степень с дробным показателем.",
+        "body": "Корень n-й степени = степень с дробным показателем. Для чётного n обязательно a, b ≥ 0 (иначе √(−4·−9) ≠ √−4·√−9).",
         "example": "<strong>Пример.</strong> √12 = 2√3; ³√(2⁶) = 4",
     },
     {
@@ -95,7 +95,7 @@ ALGEBRA_FORMULAS = [
     {
         "n": "14", "title": "Переход к новому основанию логарифма",
         "expr": "log_a b = log_c b / log_c a · · · log_a b · log_b a = 1 · · · a^(log_a b) = b",
-        "body": "Любой логарифм можно выразить через логарифмы с другим основанием.",
+        "body": "Любой логарифм можно выразить через другое основание. Условия: a, b, c > 0; a ≠ 1, c ≠ 1; для второй формулы ещё b ≠ 1.",
         "example": "<strong>Пример.</strong> log₈ 32 = log₂ 32 / log₂ 8 = 5/3",
     },
     {
@@ -130,8 +130,8 @@ ALGEBRA_FORMULAS = [
     },
     {
         "n": "20", "title": "Квадратичные неравенства",
-        "expr": "ax² + bx + c > 0, a > 0: x < x₁ или x > x₂ · · · < 0: x₁ < x < x₂",
-        "body": "Знак квадратного трёхчлена определяется знаком старшего коэффициента и положением относительно корней.",
+        "expr": "При D > 0, a > 0, x₁ < x₂: ax²+bx+c > 0 ⇔ x < x₁ или x > x₂ · · · < 0 ⇔ x₁ < x < x₂",
+        "body": "Правило работает при D > 0 (есть два разных корня) и a > 0. Если D ≤ 0 — трёхчлен не меняет знак: либо всегда положителен (a > 0), либо всегда отрицателен (a < 0).",
         "example": "<strong>Пример.</strong> x² − 5x + 6 > 0: корни 2 и 3 → x < 2 или x > 3",
     },
     {
@@ -142,21 +142,21 @@ ALGEBRA_FORMULAS = [
     },
     {
         "n": "22", "title": "Системы линейных уравнений (Крамер)",
-        "expr": "x = Δₓ/Δ · · · y = Δᵧ/Δ, где Δ = a₁b₂ − a₂b₁",
-        "body": "Решение системы двух линейных уравнений через определители.",
-        "example": "<strong>Пример.</strong> 2x + y = 5; x − y = 1 → x = 2, y = 1",
+        "expr": "Δ = a₁b₂ − a₂b₁ · · · Δₓ = c₁b₂ − c₂b₁ · · · Δᵧ = a₁c₂ − a₂c₁ · · · x = Δₓ/Δ, y = Δᵧ/Δ (Δ ≠ 0)",
+        "body": "Для системы a₁x + b₁y = c₁; a₂x + b₂y = c₂. Δ — главный определитель, Δₓ и Δᵧ получаются заменой соответствующего столбца на столбец свободных членов. Δ = 0 → нет единственного решения.",
+        "example": "<strong>Пример.</strong> 2x + y = 5; x − y = 1 → Δ = −3, Δₓ = −6, Δᵧ = −3 → x = 2, y = 1",
     },
     {
         "n": "23", "title": "Область определения функции (ОДЗ)",
-        "expr": "√f: f ≥ 0 · · · 1/f: f ≠ 0 · · · log f: f > 0 · · · tg x: x ≠ π/2 + πn",
-        "body": "Перед решением уравнения находят ОДЗ. Корни вне ОДЗ отбрасываются.",
+        "expr": "√f: f ≥ 0 · · · 1/f: f ≠ 0 · · · log_a f: f > 0, a > 0, a ≠ 1 · · · tg x: x ≠ π/2 + πn, n ∈ ℤ",
+        "body": "Перед решением уравнения или неравенства всегда находят ОДЗ. Корни, не входящие в ОДЗ, отбрасываются.",
         "example": "<strong>Пример.</strong> y = √(x − 3) + log(5 − x): ОДЗ = [3; 5)",
     },
     {
         "n": "24", "title": "Обратная функция",
-        "expr": "y = f(x) ⇔ x = f⁻¹(y) · · · f(f⁻¹(x)) = x · · · графики симметричны относительно y = x",
-        "body": "Обратная функция существует, если исходная монотонна на ОДЗ.",
-        "example": "<strong>Пример.</strong> y = 2x + 3 → обратная: y = (x − 3) / 2",
+        "expr": "y = f(x) · · · f⁻¹(f(x)) = x · · · графики f и f⁻¹ симметричны относительно прямой y = x",
+        "body": "Обратная функция существует, если f монотонна на области определения. Чтобы найти f⁻¹: поменять местами x и y, выразить y.",
+        "example": "<strong>Пример.</strong> y = 2x + 3 → x = 2y + 3 → y = (x − 3) / 2",
     },
     {
         "n": "25", "title": "Преобразования графиков функций",
@@ -333,6 +333,65 @@ SECTIONS = [
 ]
 
 
+def render_wall_sheet():
+    """Single-page concentrate: 18 must-know formulas, designed to be printed
+    and stuck on the wall above a student's desk."""
+    return '''
+<section class="wall-sheet">
+  <header class="ws-head">
+    <div class="ws-title">СТЕНА</div>
+    <div class="ws-meta">
+      <div class="ws-sub">18 формул, которые решают нацсертификат</div>
+      <div class="ws-url">101percent.uz · Нодир Нуриддинов</div>
+    </div>
+  </header>
+
+  <div class="ws-grid">
+    <div class="ws-col">
+      <div class="ws-band">АЛГЕБРА</div>
+      <div class="ws-f ws-anchor"><span class="ws-n">01</span><div class="ws-t">Квадратное уравнение</div><div class="ws-e">x = (−b ± √(b² − 4ac)) / (2a)</div></div>
+      <div class="ws-f"><span class="ws-n">02</span><div class="ws-t">Виета</div><div class="ws-e">x₁ + x₂ = −b/a · · · x₁ · x₂ = c/a</div></div>
+      <div class="ws-f"><span class="ws-n">07</span><div class="ws-t">Сокращённое умножение</div><div class="ws-e">(a ± b)² = a² ± 2ab + b²<br>a² − b² = (a − b)(a + b)<br>(a ± b)³ = a³ ± 3a²b + 3ab² ± b³</div></div>
+      <div class="ws-f"><span class="ws-n">11</span><div class="ws-t">Степени</div><div class="ws-e">aᵐ · aⁿ = aᵐ⁺ⁿ · · · (aᵐ)ⁿ = aᵐⁿ<br>aᵐ / aⁿ = aᵐ⁻ⁿ · · · a⁻ⁿ = 1/aⁿ</div></div>
+      <div class="ws-f"><span class="ws-n">12</span><div class="ws-t">Корни</div><div class="ws-e">ⁿ√(ab) = ⁿ√a · ⁿ√b<br>ⁿ√(aᵐ) = aᵐ⁄ⁿ</div></div>
+      <div class="ws-f"><span class="ws-n">05</span><div class="ws-t">Логарифмы</div><div class="ws-e">log(ab) = log a + log b<br>log(a/b) = log a − log b<br>log(aⁿ) = n · log a</div></div>
+      <div class="ws-f ws-anchor"><span class="ws-n">23</span><div class="ws-t">ОДЗ — частая ловушка</div><div class="ws-e">√f: f ≥ 0 · · · 1/f: f ≠ 0<br>log f: f > 0 · · · tg x: x ≠ π/2 + πn</div></div>
+    </div>
+
+    <div class="ws-col">
+      <div class="ws-band">ГЕОМЕТРИЯ</div>
+      <div class="ws-f"><span class="ws-n">10</span><div class="ws-t">Пифагор + площади</div><div class="ws-e">a² + b² = c²<br>S△ = ½ · a · h · · · S○ = π · r²</div></div>
+      <div class="ws-f"><span class="ws-n">27</span><div class="ws-t">Площадь через синус</div><div class="ws-e">S = ½ · a · b · sin C</div></div>
+      <div class="ws-f"><span class="ws-n">29</span><div class="ws-t">Теорема косинусов</div><div class="ws-e">a² = b² + c² − 2bc · cos A</div></div>
+      <div class="ws-f"><span class="ws-n">30</span><div class="ws-t">Теорема синусов</div><div class="ws-e">a / sin A = b / sin B = c / sin C = 2R</div></div>
+      <div class="ws-f"><span class="ws-n">39</span><div class="ws-t">Цилиндр и конус</div><div class="ws-e">V_цил = π · r² · h<br>V_кон = ⅓ · π · r² · h</div></div>
+      <div class="ws-f"><span class="ws-n">40</span><div class="ws-t">Шар</div><div class="ws-e">V = (4/3) · π · r³<br>S = 4π · r²</div></div>
+    </div>
+
+    <div class="ws-col">
+      <div class="ws-band">ТРИГ · АНАЛИЗ · ВЕРОЯТНОСТЬ</div>
+      <div class="ws-f ws-anchor"><span class="ws-n">06</span><div class="ws-t">Главное тождество</div><div class="ws-e">sin²α + cos²α = 1</div></div>
+      <div class="ws-f ws-anchor"><span class="ws-n">44</span><div class="ws-t">Углы — наизусть</div>
+        <table class="ws-tab">
+          <tr><th>α</th><th>0°</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th></tr>
+          <tr><th>sin</th><td>0</td><td>½</td><td>√2⁄2</td><td>√3⁄2</td><td>1</td></tr>
+          <tr><th>cos</th><td>1</td><td>√3⁄2</td><td>√2⁄2</td><td>½</td><td>0</td></tr>
+        </table>
+      </div>
+      <div class="ws-f"><span class="ws-n">08</span><div class="ws-t">Производные</div><div class="ws-e">(xⁿ)' = n · xⁿ⁻¹<br>(sin x)' = cos x · (cos x)' = −sin x<br>(eˣ)' = eˣ · (ln x)' = 1/x</div></div>
+      <div class="ws-f"><span class="ws-n">09</span><div class="ws-t">Комбинаторика</div><div class="ws-e">Pₙ = n!<br>Aₙᵏ = n! / (n − k)!<br>Cₙᵏ = n! / (k! · (n − k)!)</div></div>
+      <div class="ws-f"><span class="ws-n">50</span><div class="ws-t">Вероятности</div><div class="ws-e">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)<br>независимые: P(A ∩ B) = P(A) · P(B)</div></div>
+    </div>
+  </div>
+
+  <footer class="ws-foot">
+    ЗАПОМНИЛ ЭТИ 18 — СДАЛ НА 70+
+    <span class="ws-foot-tag">вырежи и наклей над столом · 101percent.uz</span>
+  </footer>
+</section>
+'''
+
+
 def render_section(title, intro, formulas):
     cards = []
     for f in formulas:
@@ -386,13 +445,15 @@ HTML_TEMPLATE = f"""
   <div class="callout">
     <h3>Как пользоваться шпаргалкой</h3>
     <ol>
-      <li>Распечатайте PDF или сохраните на телефон ребёнка.</li>
-      <li>Каждый день — по 5 формул: прочитать → объяснить себе → решить пример.</li>
-      <li>Когда формула «выучена» — перейти к следующей. Возвращаться раз в неделю.</li>
+      <li><strong>Следующая страница — «СТЕНА»</strong>: выжимка из 18 самых критичных формул. Распечатайте отдельно, наклейте над столом.</li>
+      <li>Каждый день — по 5 формул из полного набора: прочитать → объяснить себе → решить пример. Поставьте галочку в чекбоксе справа.</li>
       <li>За 10 дней — все 50 формул закрыты. Это даёт прирост 15–25 баллов нацсертификата.</li>
+      <li>Раз в неделю — пересматривайте «СТЕНА». Если запомнили эти 18 — сдадите на 70+.</li>
     </ol>
   </div>
 </section>
+
+{render_wall_sheet()}
 
 {render_section(*SECTIONS[0])}
 {render_section(*SECTIONS[1])}
@@ -427,13 +488,19 @@ CSS_STYLES = """
     color: #6B6B6B;
   }
 }
+@page wall {
+  size: A4;
+  margin: 0;
+  @bottom-center { content: none; }
+}
 
 * { box-sizing: border-box; }
 
 html, body {
-  font-family: "Helvetica", "Arial", sans-serif;
+  /* DejaVu has full Cyrillic + subscript Unicode (ₙ ₖ ᵐ ᵏ) — fixes "?" boxes in formulas */
+  font-family: "DejaVu Sans", "Helvetica", "Arial", sans-serif;
   font-size: 10.5pt;
-  line-height: 1.5;
+  line-height: 1.45;
   color: #161616;
   margin: 0;
   padding: 0;
@@ -484,7 +551,9 @@ p { margin: 0 0 3mm; }
 .callout ol { margin: 0; padding-left: 5mm; }
 .callout li { padding: 1mm 0; font-size: 10pt; }
 
-.section { padding: 5mm 0; page-break-before: always; }
+/* Sections: keep first formula with header, but DON'T force page break before each section */
+.section { padding: 5mm 0 3mm; }
+.section:first-of-type { padding-top: 0; }
 .section-head { margin-bottom: 4mm; page-break-after: avoid; }
 .section-intro { color: #6B6B6B; font-size: 10pt; margin-top: 2mm; }
 
@@ -492,15 +561,28 @@ p { margin: 0 0 3mm; }
   background: #FAF8F3;
   border-left: 3px solid #161616;
   border-radius: 0 8px 8px 0;
-  padding: 4mm 6mm;
-  margin: 3mm 0;
+  padding: 3.5mm 5mm;
+  margin: 2.5mm 0;
   page-break-inside: avoid;
+  position: relative;
+}
+/* Checkbox in upper-right — progress mechanic */
+.formula-card::after {
+  content: "";
+  position: absolute;
+  top: 4mm;
+  right: 4mm;
+  width: 4mm;
+  height: 4mm;
+  border: 1px solid #999;
+  border-radius: 2px;
 }
 .formula-head {
   display: flex;
   align-items: baseline;
-  gap: 4mm;
+  gap: 3mm;
   margin-bottom: 2mm;
+  padding-right: 8mm;
 }
 .formula-num {
   background: #161616;
@@ -511,24 +593,162 @@ p { margin: 0 0 3mm; }
   font-size: 8.5pt;
   letter-spacing: 0.08em;
   flex-shrink: 0;
+  font-family: "DejaVu Sans", "Helvetica", sans-serif;
 }
-.formula-body { font-size: 9.5pt; color: #2A2A2A; margin-bottom: 2mm; }
+.formula-body { font-size: 9.5pt; color: #2A2A2A; margin-bottom: 2mm; line-height: 1.45; }
 .formula-expr {
-  font-family: "Courier New", monospace;
+  /* DejaVu Sans Mono renders Unicode subscripts and √ correctly */
+  font-family: "DejaVu Sans Mono", "Cambria Math", "Courier New", monospace;
   font-size: 10.5pt;
   background: #FFFFFF;
   padding: 3mm 4mm;
   border: 1px dashed #F39C12;
   border-radius: 4px;
   margin: 2mm 0;
-  word-spacing: 0.3em;
-  line-height: 1.4;
+  word-spacing: 0.2em;
+  line-height: 1.5;
 }
 .formula-example {
   background: #FFF6DC;
   padding: 2.5mm 4mm;
   border-radius: 4px;
   font-size: 9.5pt;
+  font-family: "DejaVu Sans", "Helvetica", sans-serif;
+  line-height: 1.45;
+}
+
+/* ===== WALL SHEET (single-page concentrate, "СТЕНА") ===== */
+.wall-sheet {
+  page: wall;
+  width: 210mm;
+  height: 297mm;
+  margin: 0;
+  padding: 0;
+  font-family: "DejaVu Sans", "Helvetica", sans-serif;
+  color: #161616;
+  display: flex;
+  flex-direction: column;
+  page-break-before: always;
+  page-break-after: always;
+}
+.ws-head {
+  background: #161616;
+  color: #FFC93C;
+  padding: 7mm 12mm 6mm;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.ws-title {
+  font-size: 36pt;
+  font-weight: 800;
+  letter-spacing: 4px;
+  line-height: 1;
+}
+.ws-meta { text-align: right; }
+.ws-sub { font-size: 10pt; font-weight: 700; color: #fff; }
+.ws-url {
+  font-size: 8pt;
+  font-family: "DejaVu Sans Mono", monospace;
+  color: #FFC93C;
+  margin-top: 1mm;
+  letter-spacing: 0.5px;
+}
+
+.ws-grid {
+  flex: 1;
+  display: flex;
+  padding: 4mm 8mm 3mm;
+  gap: 4mm;
+}
+.ws-col { flex: 1; display: flex; flex-direction: column; }
+
+.ws-band {
+  background: #FFC93C;
+  color: #161616;
+  font-weight: 800;
+  font-size: 8.5pt;
+  letter-spacing: 1.5px;
+  padding: 2mm 3mm;
+  text-align: center;
+  border-left: 3px solid #161616;
+  margin-bottom: 2.5mm;
+}
+
+.ws-f {
+  position: relative;
+  padding: 1.5mm 2mm 1.5mm 8mm;
+  margin-bottom: 1.5mm;
+  border-bottom: 0.3pt dashed #BBB;
+  page-break-inside: avoid;
+}
+.ws-f:last-child { border-bottom: none; }
+.ws-n {
+  position: absolute;
+  left: 0;
+  top: 1.8mm;
+  font-size: 7pt;
+  font-weight: 800;
+  color: #F39C12;
+  font-family: "DejaVu Sans Mono", monospace;
+}
+.ws-t {
+  font-size: 6.8pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #444;
+  margin-bottom: 0.8mm;
+}
+.ws-e {
+  font-size: 9pt;
+  line-height: 1.35;
+  font-family: "DejaVu Sans Mono", "Cambria Math", monospace;
+  color: #161616;
+}
+
+.ws-anchor {
+  background: #FFF4D0;
+  padding: 2mm 2.5mm 2mm 8mm;
+  border-bottom: none;
+  border-left: 3px solid #F39C12;
+  margin: 0 0 2mm 0;
+  border-radius: 0 3px 3px 0;
+}
+.ws-anchor .ws-e { font-size: 9.5pt; font-weight: 600; }
+
+.ws-tab {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "DejaVu Sans Mono", "Cambria Math", monospace;
+  font-size: 8pt;
+  margin-top: 1mm;
+}
+.ws-tab th, .ws-tab td {
+  border: 0.4pt solid #161616;
+  text-align: center;
+  padding: 0.6mm 0;
+}
+.ws-tab th { background: #FFC93C; font-weight: 800; }
+
+.ws-foot {
+  background: #161616;
+  color: #FFC93C;
+  text-align: center;
+  padding: 4mm 12mm;
+  font-size: 12pt;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+.ws-foot-tag {
+  display: block;
+  font-size: 6.5pt;
+  font-weight: 500;
+  color: #999;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  margin-top: 1.5mm;
 }
 
 .cta {

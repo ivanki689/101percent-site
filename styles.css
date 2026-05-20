@@ -1084,6 +1084,24 @@ input, select, textarea, button {
   font-weight: 800;
   font-size: 12px;
 }
+.lead__preview {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.lead__preview a {
+  color: var(--yellow);
+  font-weight: 700;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 201, 60, 0.4);
+  padding-bottom: 2px;
+  transition: color 0.15s;
+}
+.lead__preview a:hover {
+  color: var(--paper);
+  border-bottom-color: var(--paper);
+}
+
 .lead__form {
   background: var(--paper);
   color: var(--ink);

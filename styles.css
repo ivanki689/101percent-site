@@ -675,15 +675,114 @@ input, select, textarea, button { font-size: 16px; }
   overflow: hidden;
   box-shadow: var(--shadow-md);
   background: var(--paper);
-  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   border: 1px solid var(--line);
+  padding: 0;
+  cursor: zoom-in;
+  font: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  appearance: none;
 }
-.cert img { width: 100%; height: 100%; object-fit: cover; }
+.cert img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .cert:hover { transform: scale(1.04) rotate(0deg); z-index: 2; box-shadow: var(--shadow-lg); }
+.cert:focus-visible { outline: none; box-shadow: var(--focus-ring), var(--shadow-md); }
 .cert--r1 { transform: rotate(-1.2deg); }
 .cert--r2 { transform: rotate(0.8deg); }
 .cert--r3 { transform: rotate(-0.4deg); }
-.cert-wall__cta { margin-top: 32px; text-align: center; }
+.cert-wall__cta {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.cert-wall__hint {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ============== LIGHTBOX ============== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  animation: lightbox-fade 0.2s ease-out;
+}
+.lightbox[hidden] { display: none; }
+@keyframes lightbox-fade { from { opacity: 0; } to { opacity: 1; } }
+.lightbox__img {
+  max-width: min(92vw, 1100px);
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  background: #fff;
+}
+.lightbox__caption {
+  position: absolute;
+  bottom: clamp(20px, 6vh, 56px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.92);
+  font-size: 14px;
+  text-align: center;
+  max-width: 80vw;
+  padding: 8px 16px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  line-height: 1;
+  transition: background 0.15s, transform 0.15s;
+  padding: 0;
+}
+.lightbox__close:hover,
+.lightbox__nav:hover { background: rgba(255,255,255,0.18); transform: scale(1.06); }
+.lightbox__close:focus-visible,
+.lightbox__nav:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(255,201,60,0.6); }
+.lightbox__close {
+  top: clamp(16px, 3vw, 28px);
+  right: clamp(16px, 3vw, 28px);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: 300;
+}
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 300;
+}
+.lightbox__nav--prev { left: clamp(8px, 2vw, 24px); }
+.lightbox__nav--next { right: clamp(8px, 2vw, 24px); }
+.lightbox__nav:hover { transform: translateY(-50%) scale(1.06); }
+@media (max-width: 600px) {
+  .lightbox__img { max-height: 70vh; }
+  .lightbox__nav { width: 44px; height: 44px; font-size: 26px; }
+  .lightbox__caption { font-size: 12px; bottom: 18px; }
+}
 
 /* ============== PROCESS ============== */
 .process { padding: clamp(56px, 8vw, 112px) 0; background: var(--paper-2); }
@@ -705,7 +804,22 @@ input, select, textarea, button { font-size: 16px; }
   align-items: start;
 }
 .steps li:nth-child(2n) { border-right: none; }
-@media (max-width: 800px) { .steps li { border-right: none; } }
+@media (max-width: 800px) {
+  .steps li { border-right: none; position: relative; }
+  /* vertical dashed connector linking the step numbers */
+  .steps li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: calc(14px + 35px - 1px);
+    top: 56px;
+    bottom: -6px;
+    width: 2px;
+    background-image: linear-gradient(to bottom, var(--orange-deep) 50%, transparent 50%);
+    background-size: 2px 8px;
+    background-repeat: repeat-y;
+    opacity: 0.45;
+  }
+}
 .steps__n {
   font-family: var(--font-display);
   font-size: 28px;

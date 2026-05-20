@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPhoneMasks();
   initMapTrigger();
   initStickyCtaToggle();
+  initCertLightbox();
 });
 
 function initBurger() {
@@ -149,6 +150,74 @@ function initMapTrigger() {
     const parent = trigger.parentElement;
     parent.innerHTML = '';
     parent.appendChild(iframe);
+  });
+}
+
+function initCertLightbox() {
+  const grid = document.getElementById('certGrid');
+  const box = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  const cap = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  if (!grid || !box || !img) return;
+
+  const items = Array.from(grid.querySelectorAll('[data-cert-src]'));
+  if (!items.length) return;
+  let index = 0;
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    const el = items[index];
+    img.src = el.dataset.certSrc;
+    img.alt = el.dataset.certCaption || '';
+    cap.textContent = el.dataset.certCaption || '';
+  }
+
+  function open(i) {
+    show(i);
+    box.hidden = false;
+    box.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    box.hidden = true;
+    box.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+
+  items.forEach((el, i) => {
+    el.addEventListener('click', () => open(i));
+  });
+
+  closeBtn?.addEventListener('click', close);
+  prevBtn?.addEventListener('click', () => show(index - 1));
+  nextBtn?.addEventListener('click', () => show(index + 1));
+
+  box.addEventListener('click', e => {
+    if (e.target === box) close();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(index - 1);
+    else if (e.key === 'ArrowRight') show(index + 1);
+  });
+
+  // touch swipe
+  let touchStartX = null;
+  box.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  box.addEventListener('touchend', e => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+    touchStartX = null;
   });
 }
 

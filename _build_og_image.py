@@ -18,10 +18,10 @@ HTML_TEMPLATE = f"""
     <img src="file://{LOGO}" class="logo">
     <span class="brand">УЧЕБНЫЙ ЦЕНТР 101%</span>
   </div>
-  <h1>Готовим в&nbsp;<span class="accent">Westminster</span>,<br>на&nbsp;нацсертификат и&nbsp;IELTS</h1>
+  <h1>Готовим в&nbsp;<span class="accent">Westminster</span>,<br>на&nbsp;нацсертификат и&nbsp;в&nbsp;госвузы</h1>
   <div class="stats">
-    <div><strong>7</strong><span>в Westminster в&nbsp;2025</span></div>
-    <div><strong>400+</strong><span>выпускников</span></div>
+    <div><strong>9</strong><span>в Westminster (лицей) в&nbsp;2025</span></div>
+    <div><strong>1000+</strong><span>выпускников</span></div>
     <div><strong>с&nbsp;2019</strong><span>работает центр</span></div>
     <div><strong>4.9★</strong><span>Яндекс.Карты</span></div>
   </div>

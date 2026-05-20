@@ -471,7 +471,7 @@ HTML_TEMPLATE = f"""
 </section>
 
 <footer class="page-footer">
-  <p>101PERCENT ООО · 101percent.uz · 101_percent@mail.ru · +998 90 023-45-60</p>
+  <p>НОУ «101percent» · 101percent.uz · 101_percent@mail.ru · +998 90 023-45-60</p>
 </footer>
 
 </body>

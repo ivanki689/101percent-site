@@ -1,7 +1,7 @@
 /* 101% v3 — mobile-first JS */
 
 const TELEGRAM_USERNAME = 'LC101percent';
-const PDF_URL = '/assets/lead-magnet.pdf';
+const PDF_URL = 'assets/lead-magnet.pdf';
 const YANDEX_MAP_EMBED =
   'https://yandex.com/map-widget/v1/?ll=69.221%2C41.331&z=16&pt=69.221%2C41.331%2Cpm2rdm&mode=search&oid=21434464753';
 

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_build_lead_magnet.py
+
+Sitemap: https://101percent.uz/sitemap.xml

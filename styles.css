@@ -896,6 +896,29 @@ input, select, textarea, button { font-size: 16px; }
   padding-bottom: 1px;
 }
 
+.hashar__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+@media (max-width: 700px) {
+  .hashar__stats { grid-template-columns: 1fr; gap: 18px; }
+}
+.hashar__stats div { color: rgba(255, 255, 255, 0.65); font-size: 14px; line-height: 1.4; }
+.hashar__stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--yellow);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
 /* ============== ABOUT NODIR ============== */
 .about { padding: clamp(64px, 9vw, 128px) 0; background: var(--paper); }
 .about__grid {
@@ -1149,15 +1172,30 @@ input, select, textarea, button { font-size: 16px; }
 }
 .ch-row {
   display: grid;
-  grid-template-columns: 48px 1fr auto;
-  align-items: center;
-  gap: 18px;
-  padding: 16px 18px;
+  grid-template-columns: 48px 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "icon name"
+    "icon desc"
+    "cta cta";
+  align-items: start;
+  gap: 4px 18px;
+  padding: 16px 20px;
   margin: 6px 0;
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   transition: transform 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+@media (min-width: 720px) {
+  .ch-row {
+    grid-template-columns: 48px 1fr auto;
+    grid-template-areas:
+      "icon name cta"
+      "icon desc cta";
+    align-items: center;
+    gap: 2px 20px;
+  }
 }
 .ch-row:hover {
   transform: translateX(4px);
@@ -1166,37 +1204,52 @@ input, select, textarea, button { font-size: 16px; }
   box-shadow: var(--shadow-sm);
 }
 .ch-row__icon {
+  grid-area: icon;
   width: 44px; height: 44px;
   border-radius: 12px;
   background: linear-gradient(135deg, #2AABEE 0%, #1FA1DC 100%);
   color: #fff;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  align-self: start;
 }
 .ch-row__name {
+  grid-area: name;
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 800;
   color: var(--ink);
   letter-spacing: -0.02em;
+  line-height: 1.2;
+  word-break: break-word;
 }
 .ch-row__desc {
+  grid-area: desc;
   font-size: 13px;
   color: var(--muted);
   line-height: 1.4;
-  display: block;
-  margin-top: 2px;
+  word-break: break-word;
 }
 .ch-row__desc strong { color: var(--ink-soft); }
 .ch-row__cta {
-  font-size: 13px;
+  grid-area: cta;
+  font-size: 14px;
   font-weight: 700;
   color: var(--orange-deep);
   white-space: nowrap;
-  padding: 8px 12px;
+  padding: 10px 18px;
   border: 1.5px solid var(--orange-deep);
   border-radius: 999px;
   transition: background 0.15s, color 0.15s;
+  text-align: center;
+  margin-top: 10px;
+  justify-self: stretch;
+}
+@media (min-width: 720px) {
+  .ch-row__cta {
+    margin-top: 0;
+    justify-self: end;
+  }
 }
 .ch-row:hover .ch-row__cta {
   background: var(--orange-deep);
@@ -1228,19 +1281,10 @@ input, select, textarea, button { font-size: 16px; }
   color: var(--ink);
   border-color: var(--yellow);
 }
-
-@media (max-width: 700px) {
-  .ch-row {
-    grid-template-columns: 40px 1fr;
-    gap: 14px;
-    padding: 14px;
-  }
-  .ch-row__cta {
-    grid-column: 2;
-    justify-self: flex-start;
-    margin-top: 6px;
-  }
-  .ch-row__icon { width: 40px; height: 40px; }
+.ch-row--locked:hover .ch-row__cta {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
 }
 
 /* ============== LOCATION ============== */
